@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
     
     @GetMapping(produces = "application/json")
-    public ResponseEntity<Entities> healthCheck() {
-        Entities entities = new Entities(true, "OK");
+    public ResponseEntity<HealthStatus> healthCheck() {
+        HealthStatus entities = new HealthStatus(true, "OK");
         return new ResponseEntity<>(entities, HttpStatus.OK);
     }
 }
