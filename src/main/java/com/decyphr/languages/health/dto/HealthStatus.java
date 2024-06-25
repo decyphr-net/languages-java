@@ -1,4 +1,4 @@
-package com.decyphr.languages.health;
+package com.decyphr.languages.health.dto;
 
 public class HealthStatus {
     public boolean isHealthy;
