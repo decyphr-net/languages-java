@@ -17,5 +17,9 @@ public class LanguagesManager {
     
     public List<LanguageModel> getAllLanguages() {
         return languageRepository.getAllLanguages();
-    } 
+    }
+
+    public LanguageModel getLanguageBasedOnCodeOrShortCode(String codeOrShortCode) {
+        return languageRepository.getLanguageBasedOnCodeOrShortCode(codeOrShortCode);
+    }
 }
