@@ -1,17 +1,19 @@
-package com.decyphr.languages.languages;
+package com.decyphr.languages.languages.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Model {
+@NoArgsConstructor
+public class LanguageModel {
     private int id;
     private String name;
     private String code;
     private String shortCode;
 
-    protected Model(String name, String code, String shortCode) {
+    public LanguageModel(String name, String code, String shortCode) {
         this.name = name;
         this.code = code;
         this.shortCode = shortCode;
