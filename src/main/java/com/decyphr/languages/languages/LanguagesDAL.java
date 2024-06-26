@@ -46,7 +46,6 @@ public class LanguagesDAL {
     }
 
     public LanguageEntity getLanguageById(int id) {
-        System.out.println(id);
         LanguageEntity language = languagesCacheRepository.getLanguageById(id);
         
         if (language == null) {

@@ -21,10 +21,7 @@ public class LanguagesSingleton {
 
     public static LanguagesSingleton getInstance() {
         if (instance == null) {
-            System.out.println("Creating new singleton instance");
             instance = new LanguagesSingleton();
-        } else {
-            System.out.println("Reusing singleton instance");
         }
 
         return instance;
@@ -45,8 +42,6 @@ public class LanguagesSingleton {
     }
 
     public LanguageEntity getLanguageById(int id) {
-        System.out.println(id);
-        System.out.println(languages.size());
         for (LanguageEntity language : languages) {
             if (language.getId() == id) {
                 return language;

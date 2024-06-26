@@ -45,7 +45,6 @@ public class LanguagesController {
     @GetMapping(path = "/api/language/{id}")
     public ResponseEntity<LanguageEntity> getLanguageById(
             @PathVariable(required=true, name="id") int id) {
-        System.out.println(id);
         LanguageEntity language = languagesManager.getLanguageById(id);
 
         if (language == null) {

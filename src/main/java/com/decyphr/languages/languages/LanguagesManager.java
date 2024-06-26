@@ -25,13 +25,10 @@ public class LanguagesManager {
     }
 
     public LanguageEntity getLanguageById(int id) {
-        System.out.println(id);
         return languagesDal.getLanguageById(id);
     }
 
     public void populateLanguageCache() {
-        System.out.println("Populating languages cache");
         languagesSingleton.setLanguages(getAllLanguages());
-        System.out.println(languagesSingleton.getLanguageById(1));
     }
 }

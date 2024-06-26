@@ -19,7 +19,6 @@ public class LanguagesCacheRepository implements ILanguagesRepository {
     }
 
     public LanguageEntity getLanguageById(int id) {
-        System.out.println(languagesSingleton.getLanguages());
         return languagesSingleton.getLanguageById(id);
     }
 }
