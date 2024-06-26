@@ -9,39 +9,29 @@ import com.decyphr.languages.languages.dto.LanguageEntity;
 @Component
 public class LanguagesManager {
 
-    LanguagesRepository languageRepository;
+    LanguagesDAL languagesDal;
     LanguagesSingleton languagesSingleton = LanguagesSingleton.getInstance();
 
-    public LanguagesManager(LanguagesRepository languageRepository) {
-        this.languageRepository = languageRepository;
-
+    public LanguagesManager(LanguagesDAL languagesDal) {
+        this.languagesDal = languagesDal;
     }
     
     public List<LanguageEntity> getAllLanguages() {
-        List<LanguageEntity> languages = null;
-
-        try {
-            languages = languagesSingleton.getLanguages();
-        } catch (Exception e) {
-            languages = languageRepository.getAllLanguages();
-        }
-        
-        if (languages == null) {
-            languages = languageRepository.getAllLanguages();
-        }
-        
-        return languages;
+        return languagesDal.getAllLanguages();
     }
 
     public LanguageEntity getLanguageByCodeOrShortCode(String codeOrShortCode) {
-        return languageRepository.getLanguageByCodeOrShortCode(codeOrShortCode);
+        return languagesDal.getLanguageByCodeOrShortCode(codeOrShortCode);
     }
 
     public LanguageEntity getLanguageById(int id) {
-        return languageRepository.getLanguageById(id);
+        System.out.println(id);
+        return languagesDal.getLanguageById(id);
     }
 
     public void populateLanguageCache() {
+        System.out.println("Populating languages cache");
         languagesSingleton.setLanguages(getAllLanguages());
+        System.out.println(languagesSingleton.getLanguageById(1));
     }
 }

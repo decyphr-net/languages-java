@@ -10,11 +10,11 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import com.decyphr.languages.languages.dto.LanguageEntity;
 
 @Component
-public class LanguagesRepository {
+public class LanguagesDatabaseRepository {
 
     JdbcTemplate jdbcTemplate;
 
-    public LanguagesRepository(JdbcTemplate jdbcTemplate) {
+    public LanguagesDatabaseRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
