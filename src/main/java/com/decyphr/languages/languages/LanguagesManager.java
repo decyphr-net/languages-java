@@ -2,7 +2,6 @@ package com.decyphr.languages.languages;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.decyphr.languages.languages.dto.LanguageModel;
