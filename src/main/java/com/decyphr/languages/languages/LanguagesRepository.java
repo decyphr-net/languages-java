@@ -57,7 +57,7 @@ public class LanguagesRepository {
      * @param codeOrShortCode
      * @return
      */
-    public LanguageModel getLanguageBasedOnCodeOrShortCode(String codeOrShortCode) {
+    public LanguageModel getLanguageByCodeOrShortCode(String codeOrShortCode) {
         LanguageModel language = getLanguageBasedOnCode(codeOrShortCode);
 
         if (language == null) {

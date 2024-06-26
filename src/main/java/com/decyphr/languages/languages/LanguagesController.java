@@ -33,7 +33,7 @@ public class LanguagesController {
     public ResponseEntity<LanguageModel> getLanguage(
             @RequestParam(required = true) Map<String, String> params) {
 
-        LanguageModel language = languagesManager.getLanguageBasedOnCodeOrShortCode(
+        LanguageModel language = languagesManager.getLanguageByCodeOrShortCode(
                 params.get("code"));
 
         if (language == null) {

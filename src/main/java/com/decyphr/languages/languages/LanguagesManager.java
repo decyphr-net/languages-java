@@ -33,8 +33,8 @@ public class LanguagesManager {
         return languages;
     }
 
-    public LanguageModel getLanguageBasedOnCodeOrShortCode(String codeOrShortCode) {
-        return languageRepository.getLanguageBasedOnCodeOrShortCode(codeOrShortCode);
+    public LanguageModel getLanguageByCodeOrShortCode(String codeOrShortCode) {
+        return languageRepository.getLanguageByCodeOrShortCode(codeOrShortCode);
     }
 
     public LanguageModel getLanguageById(int id) {
