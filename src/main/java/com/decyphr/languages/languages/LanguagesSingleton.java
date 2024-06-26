@@ -5,14 +5,14 @@ import lombok.Setter;
 
 import java.util.List;
 
-import com.decyphr.languages.languages.dto.LanguageModel;
+import com.decyphr.languages.languages.dto.LanguageEntity;
 
 public class LanguagesSingleton {
     
     private static LanguagesSingleton instance;
     @Getter
     @Setter
-    private List<LanguageModel> languages;
+    private List<LanguageEntity> languages;
     
     private LanguagesSingleton() { }
 

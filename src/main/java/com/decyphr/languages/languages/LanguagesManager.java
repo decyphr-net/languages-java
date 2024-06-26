@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.decyphr.languages.languages.dto.LanguageModel;
+import com.decyphr.languages.languages.dto.LanguageEntity;
 
 @Component
 public class LanguagesManager {
@@ -17,8 +17,8 @@ public class LanguagesManager {
 
     }
     
-    public List<LanguageModel> getAllLanguages() {
-        List<LanguageModel> languages = null;
+    public List<LanguageEntity> getAllLanguages() {
+        List<LanguageEntity> languages = null;
 
         try {
             languages = languagesSingleton.getLanguages();
@@ -33,11 +33,11 @@ public class LanguagesManager {
         return languages;
     }
 
-    public LanguageModel getLanguageByCodeOrShortCode(String codeOrShortCode) {
+    public LanguageEntity getLanguageByCodeOrShortCode(String codeOrShortCode) {
         return languageRepository.getLanguageByCodeOrShortCode(codeOrShortCode);
     }
 
-    public LanguageModel getLanguageById(int id) {
+    public LanguageEntity getLanguageById(int id) {
         return languageRepository.getLanguageById(id);
     }
 

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.decyphr.languages.languages.dto.LanguageModel;
+import com.decyphr.languages.languages.dto.LanguageEntity;
 
 @RestController
 @RequestMapping()
@@ -24,16 +24,16 @@ public class LanguagesController {
     }
     
     @GetMapping(path = "/api/languages", produces = "application/json")
-    public ResponseEntity<List<LanguageModel>> getLanguages() {
-		List<LanguageModel> languages = languagesManager.getAllLanguages();
-        return new ResponseEntity<List<LanguageModel>>(languages, HttpStatus.OK);
+    public ResponseEntity<List<LanguageEntity>> getLanguages() {
+		List<LanguageEntity> languages = languagesManager.getAllLanguages();
+        return new ResponseEntity<List<LanguageEntity>>(languages, HttpStatus.OK);
     }
 
     @GetMapping(path = "/api/language", produces = "application/json")
-    public ResponseEntity<LanguageModel> getLanguage(
+    public ResponseEntity<LanguageEntity> getLanguage(
             @RequestParam(required = true) Map<String, String> params) {
 
-        LanguageModel language = languagesManager.getLanguageByCodeOrShortCode(
+        LanguageEntity language = languagesManager.getLanguageByCodeOrShortCode(
                 params.get("code"));
 
         if (language == null) {
@@ -43,9 +43,9 @@ public class LanguagesController {
     }
 
     @GetMapping(path = "/api/language/{id}")
-    public ResponseEntity<LanguageModel> getLanguageById(
+    public ResponseEntity<LanguageEntity> getLanguageById(
             @PathVariable(required=true, name="id") int id) {
-        LanguageModel language = languagesManager.getLanguageById(id);
+        LanguageEntity language = languagesManager.getLanguageById(id);
 
         if (language == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

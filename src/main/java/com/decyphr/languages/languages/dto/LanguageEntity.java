@@ -7,13 +7,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class LanguageModel {
+public class LanguageEntity {
     private int id;
     private String name;
     private String code;
     private String shortCode;
 
-    public LanguageModel(String name, String code, String shortCode) {
+    public LanguageEntity(String name, String code, String shortCode) {
         this.name = name;
         this.code = code;
         this.shortCode = shortCode;

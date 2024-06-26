@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.dao.EmptyResultDataAccessException;
 
-import com.decyphr.languages.languages.dto.LanguageModel;
+import com.decyphr.languages.languages.dto.LanguageEntity;
 
 @Component
 public class LanguagesRepository {
@@ -18,31 +18,31 @@ public class LanguagesRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<LanguageModel> getAllLanguages() {
+    public List<LanguageEntity> getAllLanguages() {
         String sql = "SELECT id, name, code, short_code FROM languages";
 		return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(
-                    LanguageModel.class));
+                    LanguageEntity.class));
     }
 
-    private LanguageModel getSingleLanguage(String sql, Object whereValue) {
+    private LanguageEntity getSingleLanguage(String sql, Object whereValue) {
         try {
             return jdbcTemplate.queryForObject(
                     sql, 
-                    BeanPropertyRowMapper.newInstance(LanguageModel.class), 
+                    BeanPropertyRowMapper.newInstance(LanguageEntity.class), 
                     whereValue);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
     }
 
-    private LanguageModel getLanguageBasedOnCode(String code) {
+    private LanguageEntity getLanguageBasedOnCode(String code) {
         return getSingleLanguage(
             "SELECT id, name, code, short_code FROM languages WHERE code=?",
             code
         );
     }
 
-    private LanguageModel getLanguageBasedOnShortCode(String shortCode) {
+    private LanguageEntity getLanguageBasedOnShortCode(String shortCode) {
         return getSingleLanguage(
             "SELECT id, name, code, short_code FROM languages WHERE short_code=?",
             shortCode
@@ -57,8 +57,8 @@ public class LanguagesRepository {
      * @param codeOrShortCode
      * @return
      */
-    public LanguageModel getLanguageByCodeOrShortCode(String codeOrShortCode) {
-        LanguageModel language = getLanguageBasedOnCode(codeOrShortCode);
+    public LanguageEntity getLanguageByCodeOrShortCode(String codeOrShortCode) {
+        LanguageEntity language = getLanguageBasedOnCode(codeOrShortCode);
 
         if (language == null) {
             language = getLanguageBasedOnShortCode(codeOrShortCode);
@@ -67,7 +67,7 @@ public class LanguagesRepository {
         return language;
     }
 
-    public LanguageModel getLanguageById(int id) {
+    public LanguageEntity getLanguageById(int id) {
         return getSingleLanguage(
             "SELECT id, name, code, short_code FROM languages WHERE id=?", id
         );
