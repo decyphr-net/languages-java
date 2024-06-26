@@ -24,7 +24,7 @@ public class LanguagesRepository {
                     LanguageModel.class));
     }
 
-    private LanguageModel getSingleLanguage(String sql, String whereValue) {
+    private LanguageModel getSingleLanguage(String sql, Object whereValue) {
         try {
             return jdbcTemplate.queryForObject(
                     sql, 
@@ -65,5 +65,11 @@ public class LanguagesRepository {
         }
 
         return language;
+    }
+
+    public LanguageModel getLanguageById(int id) {
+        return getSingleLanguage(
+            "SELECT id, name, code, short_code FROM languages WHERE id=?", id
+        );
     }
 }

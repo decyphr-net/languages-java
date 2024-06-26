@@ -37,6 +37,10 @@ public class LanguagesManager {
         return languageRepository.getLanguageBasedOnCodeOrShortCode(codeOrShortCode);
     }
 
+    public LanguageModel getLanguageById(int id) {
+        return languageRepository.getLanguageById(id);
+    }
+
     public void populateLanguageCache() {
         languagesSingleton.setLanguages(getAllLanguages());
     }
