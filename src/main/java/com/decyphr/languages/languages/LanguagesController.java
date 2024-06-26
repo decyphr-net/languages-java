@@ -3,7 +3,6 @@ package com.decyphr.languages.languages;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,14 +22,48 @@ public class LanguagesController {
         this.languagesManager = languagesManager;
     }
     
+    /**
+     * Get all languages and return them
+     * 
+     * Example Usage:
+     *      curl --request GET --url http://127.0.0.1:8080/api/languages
+     * 
+     * Example Response:
+     *      [
+     *          {
+     *              "id": 1,
+     *              "name": "English",
+     *              "code": "en-GB",
+     *              "shortCode": "en"
+     *          }
+     *      ]
+     * 
+     * @return ResponseEntity<List<LanguageEntity>>
+     */
     @GetMapping(path = "/api/languages", produces = "application/json")
     public ResponseEntity<List<LanguageEntity>> getLanguages() {
 		List<LanguageEntity> languages = languagesManager.getAllLanguages();
         return new ResponseEntity<List<LanguageEntity>>(languages, HttpStatus.OK);
     }
 
+    /**
+     * Get langauge by code or short code
+     *
+     * Example Usage:
+     *      curl --request GET --url http://127.0.0.1:8080/api/language?code=en
+     *
+     * Example Response:
+     *      {
+     *          "id": 1,
+     *          "name": "English",
+     *          "code": "en-GB",
+     *          "shortCode": "en"
+     *      }
+     * 
+     * @return ResponseEntity<LanguageEntity>
+     */
     @GetMapping(path = "/api/language", produces = "application/json")
-    public ResponseEntity<LanguageEntity> getLanguage(
+    public ResponseEntity<LanguageEntity> getLanguageByCodeOrShortCode(
             @RequestParam(required = true) Map<String, String> params) {
 
         LanguageEntity language = languagesManager.getLanguageByCodeOrShortCode(
@@ -42,6 +75,22 @@ public class LanguagesController {
         return new ResponseEntity<>(language, HttpStatus.OK);
     }
 
+    /**
+     * Get langauge by ID
+     *
+     * Example Usage:
+     *      curl --request GET --url http://127.0.0.1:8080/api/language/1
+     *
+     * Example Response:
+     *      {
+     *          "id": 1,
+     *          "name": "English",
+     *          "code": "en-GB",
+     *          "shortCode": "en"
+     *      }
+     * 
+     * @return ResponseEntity<LanguageEntity>
+     */
     @GetMapping(path = "/api/language/{id}")
     public ResponseEntity<LanguageEntity> getLanguageById(
             @PathVariable(required=true, name="id") int id) {

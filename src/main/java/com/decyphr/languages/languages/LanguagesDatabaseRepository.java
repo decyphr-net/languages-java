@@ -18,12 +18,24 @@ public class LanguagesDatabaseRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    /**
+     * Retrieve all languages
+     *
+     * @return
+     */
     public List<LanguageEntity> getAllLanguages() {
         String sql = "SELECT id, name, code, short_code FROM languages";
 		return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(
                     LanguageEntity.class));
     }
 
+    /**
+     * Get and return a single language by whatever where clause value is provided
+     *
+     * @param sql - SQL query
+     * @param whereValue - value to be injected into the query
+     * @return
+     */
     private LanguageEntity getSingleLanguage(String sql, Object whereValue) {
         try {
             return jdbcTemplate.queryForObject(
@@ -35,6 +47,12 @@ public class LanguagesDatabaseRepository {
         }
     }
 
+    /**
+     * Get and return a single language by its code
+     *
+     * @param code
+     * @return
+     */
     private LanguageEntity getLanguageBasedOnCode(String code) {
         return getSingleLanguage(
             "SELECT id, name, code, short_code FROM languages WHERE code=?",
@@ -42,6 +60,12 @@ public class LanguagesDatabaseRepository {
         );
     }
 
+    /**
+     * Get and return a single language by its shortCode
+     *
+     * @param id
+     * @return
+     */
     private LanguageEntity getLanguageBasedOnShortCode(String shortCode) {
         return getSingleLanguage(
             "SELECT id, name, code, short_code FROM languages WHERE short_code=?",
@@ -67,6 +91,12 @@ public class LanguagesDatabaseRepository {
         return language;
     }
 
+    /**
+     * Get and return a single language by its ID
+     *
+     * @param id
+     * @return
+     */
     public LanguageEntity getLanguageById(int id) {
         return getSingleLanguage(
             "SELECT id, name, code, short_code FROM languages WHERE id=?", id

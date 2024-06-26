@@ -11,9 +11,11 @@ public class StartupManager {
 
     public StartupManager(LanguagesManager languagesManager) {
         this.languagesManager = languagesManager;
-        // languagesManager.populateLanguageCache();
     }
 
+    /**
+     * Populate internal memory cache
+     */
     public void populateLanguageCache() {
         languagesManager.populateLanguageCache();
     }
