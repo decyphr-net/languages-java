@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.decyphr.languages.languages.dto.LanguageEntity;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 @RequestMapping()
 public class LanguagesController {
@@ -42,6 +45,7 @@ public class LanguagesController {
      */
     @GetMapping(path = "/api/languages", produces = "application/json")
     public ResponseEntity<List<LanguageEntity>> getLanguages() {
+        log.info("Getting languages");
 		List<LanguageEntity> languages = languagesManager.getAllLanguages();
         return new ResponseEntity<List<LanguageEntity>>(languages, HttpStatus.OK);
     }
